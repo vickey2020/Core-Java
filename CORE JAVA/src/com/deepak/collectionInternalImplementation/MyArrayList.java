@@ -158,6 +158,16 @@ public class MyArrayList<E> {
 		return iterator();
 	}
 
+	public void print() {
+		int index = 1;
+		Object temp = element[0];
+		while (temp != null) {
+			System.out.print(" " + temp);
+			++index;
+			temp = element[index];
+		}
+	}
+
 	public static void main(String[] args) {
 		MyArrayList l = new MyArrayList();
 		l.add(0);
@@ -172,6 +182,7 @@ public class MyArrayList<E> {
 		l.add(8);
 		l.add(9);
 		l.add(10);
-		System.out.println(l);
+
+		l.print();
 	}
 }

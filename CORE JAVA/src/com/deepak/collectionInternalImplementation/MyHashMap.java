@@ -2,13 +2,13 @@ package com.deepak.collectionInternalImplementation;
 
 class MyHashMap {
 
-	private static Entry[] element;
-	private int size = 0;
-	int index;
+	private Entry[] element;
+	private int capacity = 0;
+	// int index;
 
 	public MyHashMap() {
-		size = 16;
-		element = new Entry[size];
+		capacity = 16;
+		element = new Entry[capacity];
 	}
 
 	static class Entry {
@@ -19,6 +19,7 @@ class MyHashMap {
 		public Entry(String key, String value) {
 			this.key = key;
 			this.value = value;
+			next = null;
 		}
 
 		public String getValue() {
@@ -39,9 +40,9 @@ class MyHashMap {
 			putForNullKey(key, value);
 		}
 		int hash = hash(key.hashCode());
-		int i = indexFor(hash, element.length);
+		int index = indexForBucket(hash, element.length);
 		// System.out.println("put i :: " + i + " && " + element.length);
-		Entry oldEntry = element[i];
+		Entry oldEntry = element[index];
 		while (oldEntry != null) {
 			if (oldEntry.getKey().equals(key)) {
 				oldEntry.value = value;
@@ -51,7 +52,7 @@ class MyHashMap {
 		}
 		Entry newEntry = new Entry(key, value);
 		newEntry.next = oldEntry;
-		element[i] = newEntry;
+		element[index] = newEntry;
 	}
 
 	private void putForNullKey(String key, String value) {
@@ -62,7 +63,7 @@ class MyHashMap {
 	/**
 	 * Returns index for hash code h.
 	 */
-	static int indexFor(int h, int length) {
+	static int indexForBucket(int h, int length) {
 		return h & (length - 1);
 	}
 
@@ -70,9 +71,9 @@ class MyHashMap {
 		if (key == null)
 			return getForNullKey();
 		int hash = hash(key.hashCode());
-		int i = indexFor(hash, element.length);
-		// System.out.println("i: " + i);
-		Entry oldEntity = element[i];
+		int index = indexForBucket(hash, element.length);
+		// System.out.println("index: " + index);
+		Entry oldEntity = element[index];
 		while (oldEntity != null) {
 			if (oldEntity.key.equals(key)) {
 				return oldEntity;
@@ -101,6 +102,17 @@ class MyHashMap {
 		h ^= (h >>> 20) ^ (h >>> 12);
 		return h ^ (h >>> 7) ^ (h >>> 4);
 	}
+	
+	public void print()
+	{   int i=1;
+		Object temp=element[0].getKey();
+		while(temp!=null)
+		{
+			System.out.println(" "+temp);
+			++i;
+			temp=element[i].getKey();
+		}
+	}
 
 	public static void main(String[] args) {
 		MyHashMap m = new MyHashMap();
@@ -110,28 +122,13 @@ class MyHashMap {
 		m.put("Sumit", "Netzelous");
 		m.put("Sumit", "Net");
 		m.put("Sumit", "Net");
-		//m.put(null, "Software");
-		//m.put(null, "Software");
+	  //  m.put(null, "Software");
+	    //m.put(null, "Software");
 
 		MyHashMap.Entry e1 = m.get("Deepak");
 		System.out.println("Deepak :: " + e1.getValue());
-		MyHashMap.Entry e2 = m.get("Chandu");
-		System.out.println("Chandu :: " + e2.getValue());
-		MyHashMap.Entry e3 = m.get("Ankit");
-		System.out.println("Ankit :: " + e3.getValue());
-		MyHashMap.Entry e4 = m.get("Sumit");
-		System.out.println("Sumit :: " + e4.getValue());
-		//MyHashMap.Entry e5 = m.get(null);
-		//System.out.println("null :: " + e5.getValue());
 		
-/*
-		Set entry = m.entrySet();
-		Iterator itr = entry.iterator();
-		while (itr.hasNext()) {
-			Map.Entry<String, String> et = (Map.Entry<String, String>) itr.next();
-			System.out.println(et.getKey() + " " + et.getValue());
-		}*/
+		m.print();
 	}
-
 
 }
