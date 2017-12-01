@@ -1,7 +1,5 @@
 package com.deepak.collectionInternalImplementation;
 
-import java.util.Arrays;
-
 public class MySingleLinkedList {
 	int size = 0;
 	Node head = null;

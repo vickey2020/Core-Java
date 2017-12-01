@@ -49,8 +49,8 @@ public class Merge {
 			++rightStart;
 			++index;
 		}
-		for (leftStart = leftIndex; leftStart <= rightIndex; leftStart++) {
-			arr[leftStart] = temp[leftStart];
+		for (int i= leftIndex; i <= rightIndex; i++) {
+			arr[i] = temp[i];
 		}
 	}
 }

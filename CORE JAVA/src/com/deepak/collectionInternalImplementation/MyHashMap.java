@@ -51,7 +51,7 @@ class MyHashMap {
 			oldEntry = oldEntry.next;
 		}
 		Entry newEntry = new Entry(key, value);
-		newEntry.next = oldEntry;
+		newEntry.next = element[index];
 		element[index] = newEntry;
 	}
 
@@ -128,7 +128,7 @@ class MyHashMap {
 		MyHashMap.Entry e1 = m.get("Deepak");
 		System.out.println("Deepak :: " + e1.getValue());
 		
-		m.print();
+		//m.print();
 	}
 
 }

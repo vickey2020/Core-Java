@@ -31,10 +31,11 @@ public class MyStack {
 
 	public Object pop() {
 		Object e = peak();
-		return element[--size];
+		--size;
+		return e;
 	}
 
-	private Object peak() {
+	public Object peak() {
 		if (size == 0)
 			throw new EmptyStackException();
 		return element[size - 1];

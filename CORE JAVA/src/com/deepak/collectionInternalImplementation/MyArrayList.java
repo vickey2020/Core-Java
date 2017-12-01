@@ -1,6 +1,7 @@
 package com.deepak.collectionInternalImplementation;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class MyArrayList<E> {
