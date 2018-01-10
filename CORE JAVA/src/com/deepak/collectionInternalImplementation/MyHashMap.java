@@ -122,7 +122,7 @@ class MyHashMap {
 		m.put("Sumit", "Netzelous");
 		m.put("Sumit", "Net");
 		m.put("Sumit", "Net");
-	    m.put(null, "Software");
+	   // m.put(null, "Software");
 	    //m.put(null, "Software");
 
 		MyHashMap.Entry e1 = m.get("Deepak");
